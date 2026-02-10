@@ -27,11 +27,11 @@ const WC_ANIM = 879; // generic woodcutting animation
 // Axe definitions: [objId, level, name]
 const AXES = [
     { id: 1351, level: 1, name: 'bronze axe' },
-    { id: 1353, level: 1, name: 'iron axe' },
-    { id: 1355, level: 6, name: 'steel axe' },
-    { id: 1357, level: 21, name: 'mithril axe' },
-    { id: 1359, level: 31, name: 'adamant axe' },
-    { id: 1361, level: 41, name: 'rune axe' },
+    { id: 1349, level: 1, name: 'iron axe' },
+    { id: 1353, level: 6, name: 'steel axe' },
+    { id: 1355, level: 21, name: 'mithril axe' },
+    { id: 1357, level: 31, name: 'adamant axe' },
+    { id: 1359, level: 41, name: 'rune axe' },
 ];
 
 // Tree definitions

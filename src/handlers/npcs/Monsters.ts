@@ -28,15 +28,15 @@ const MONSTERS: MonsterDef[] = [
     { ids: [1, 2], atk: 1, def: 1, str: 1, hp: 7, rng: 0, mag: 0 },                 // Man/Woman
 
     // Guards
-    { ids: [3, 4, 9], atk: 18, def: 14, str: 18, hp: 22, rng: 0, mag: 0 },          // Guard
+    { ids: [9, 10], atk: 18, def: 14, str: 18, hp: 22, rng: 0, mag: 0 },            // Guard
 
     // Varrock area
     { ids: [172, 174], atk: 7, def: 7, str: 5, hp: 19, rng: 0, mag: 12, aggressive: true, huntRange: 4 }, // Dark wizard
-    { ids: [26, 27], atk: 4, def: 4, str: 4, hp: 10, rng: 0, mag: 0 },              // Spider
-    { ids: [47], atk: 14, def: 14, str: 14, hp: 25, rng: 0, mag: 0, aggressive: true }, // Skeleton
+    { ids: [59, 60, 61], atk: 4, def: 4, str: 4, hp: 10, rng: 0, mag: 0 },          // Spider / Giant spider
+    { ids: [90, 91, 92], atk: 14, def: 14, str: 14, hp: 25, rng: 0, mag: 0, aggressive: true }, // Skeleton
 
     // Barbarian Village
-    { ids: [83], atk: 6, def: 5, str: 6, hp: 14, rng: 0, mag: 0 },                  // Barbarian
+    { ids: [12], atk: 6, def: 5, str: 6, hp: 14, rng: 0, mag: 0 },                  // Barbarian
 
     // Al-Kharid
     { ids: [18, 19], atk: 12, def: 12, str: 12, hp: 19, rng: 0, mag: 0 },           // Al-Kharid warrior
@@ -45,8 +45,8 @@ const MONSTERS: MonsterDef[] = [
     { ids: [76, 77], atk: 13, def: 11, str: 13, hp: 20, rng: 0, mag: 0 },           // Zombie
 
     // Wilderness
-    { ids: [53], atk: 33, def: 37, str: 33, hp: 40, rng: 0, mag: 0, aggressive: true }, // Lesser demon
-    { ids: [54], atk: 80, def: 80, str: 82, hp: 87, rng: 0, mag: 0, aggressive: true }, // Greater demon
+    { ids: [82], atk: 33, def: 37, str: 33, hp: 40, rng: 0, mag: 0, aggressive: true }, // Lesser demon
+    { ids: [83], atk: 80, def: 80, str: 82, hp: 87, rng: 0, mag: 0, aggressive: true }, // Greater demon
     { ids: [50], atk: 60, def: 60, str: 60, hp: 65, rng: 0, mag: 0, aggressive: true }, // Black demon
 
     // Hill Giant
@@ -65,7 +65,7 @@ const MONSTERS: MonsterDef[] = [
     { ids: [122, 123], atk: 22, def: 24, str: 22, hp: 29, rng: 0, mag: 0 },         // Hobgoblin
 
     // Imp
-    { ids: [5, 6], atk: 1, def: 1, str: 1, hp: 3, rng: 0, mag: 0 },                // Imp
+    { ids: [708], atk: 1, def: 1, str: 1, hp: 3, rng: 0, mag: 0 },                  // Imp
 ];
 
 for (const monster of MONSTERS) {

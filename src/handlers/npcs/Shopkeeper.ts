@@ -1,5 +1,5 @@
 /**
- * General Store Shopkeeper (NPC ID: 220) and Shop Assistant (NPC ID: 221).
+ * General Store Shopkeeper (NPC ID: 520) and Shop Assistant (NPC ID: 522).
  * Op1: Talk-to — opens general store.
  * Op2: Trade — opens general store directly.
  *
@@ -10,8 +10,8 @@ import ScriptProvider, { ScriptContext } from '#/engine/script/ScriptProvider.js
 import ServerTriggerType from '#/engine/script/ServerTriggerType.js';
 import { openShop } from '#/engine/ShopSystem.js';
 
-const SHOPKEEPER_ID = 220;
-const SHOP_ASSISTANT_ID = 221;
+const SHOPKEEPER_ID = 520;
+const SHOP_ASSISTANT_ID = 522;
 
 // General store inventory type ID (varies by location — use Lumbridge default)
 const GENERAL_STORE_INV = 4;

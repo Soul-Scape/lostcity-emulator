@@ -1,5 +1,5 @@
 /**
- * Banker NPCs (IDs: 44, 45).
+ * Banker NPCs (IDs: 494, 495).
  * Op1: Talk-to — opens bank interface.
  */
 import Player from '#/engine/entity/Player.js';
@@ -9,7 +9,7 @@ import ScriptProvider, { ScriptContext } from '#/engine/script/ScriptProvider.js
 import ServerTriggerType from '#/engine/script/ServerTriggerType.js';
 import { messageGame, ifOpenMainSide, updateInvFull } from '#/network/server/ServerMessages.js';
 
-const BANKER_IDS = [44, 45];
+const BANKER_IDS = [494, 495];
 
 // RS225 bank interface + side inventory
 const BANK_MAIN_COMPONENT = 5292;

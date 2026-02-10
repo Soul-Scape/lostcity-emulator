@@ -1,5 +1,5 @@
 /**
- * Man (NPC ID: 1) and Woman (NPC ID: 2).
+ * Man (NPC ID: 1) and Woman (NPC IDs: 4, 5, 6).
  * Op1: Talk-to — generic dialogue.
  * Op2: Attack — handled by global combat handler.
  */
@@ -10,7 +10,7 @@ import ServerTriggerType from '#/engine/script/ServerTriggerType.js';
 import { messageGame } from '#/network/server/ServerMessages.js';
 
 const MAN_ID = 1;
-const WOMAN_ID = 2;
+const WOMAN_IDS = [4, 5, 6];
 
 const MAN_LINES = [
     'How can I help you?',
@@ -33,8 +33,10 @@ ScriptProvider.register(ServerTriggerType.OPNPC1, MAN_ID, (ctx: ScriptContext) =
     messageGame(player, line);
 });
 
-ScriptProvider.register(ServerTriggerType.OPNPC1, WOMAN_ID, (ctx: ScriptContext) => {
-    const player = ctx.self as Player;
-    const line = WOMAN_LINES[Math.floor(Math.random() * WOMAN_LINES.length)];
-    messageGame(player, line);
-});
+for (const womanId of WOMAN_IDS) {
+    ScriptProvider.register(ServerTriggerType.OPNPC1, womanId, (ctx: ScriptContext) => {
+        const player = ctx.self as Player;
+        const line = WOMAN_LINES[Math.floor(Math.random() * WOMAN_LINES.length)];
+        messageGame(player, line);
+    });
+}

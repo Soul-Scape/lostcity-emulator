@@ -385,6 +385,44 @@ export default class Player extends PathingEntity {
         return !this.protect && !this.busy();
     }
 
+    // ---- interaction + movement ----
+
+    /**
+     * Process player interaction with target and movement.
+     * Called by World.processPlayers() after queues/timers.
+     *
+     * If the player has a target (NPC, loc, obj, player), path toward it,
+     * move, and fire the script trigger when in operable distance.
+     * If no target, just process movement (walk/run from waypoints).
+     */
+    processInteraction(): void {
+        if (this.target) {
+            // path toward target if we have waypoints queued or need to repath
+            if (!this.hasWaypoints()) {
+                this.pathToTarget();
+            }
+
+            // move
+            this.updateMovement();
+
+            // check if we're in range to operate
+            if (this.inOperableDistance(this.target)) {
+                const typeId = 'type' in this.target ? (this.target as any).type : -1;
+                const handler = ScriptProvider.getByTrigger(this.targetOp, typeId);
+                if (handler) {
+                    handler({ self: this, target: this.target });
+                }
+                this.clearInteraction();
+            } else if (!this.hasWaypoints() && this.stepsTaken === 0) {
+                // can't reach target and not moving — give up
+                this.clearInteraction();
+            }
+        } else {
+            // no target — just process movement from queued waypoints
+            this.updateMovement();
+        }
+    }
+
     // ---- per-tick processing ----
 
     /**

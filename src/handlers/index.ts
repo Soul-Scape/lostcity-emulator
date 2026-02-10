@@ -41,4 +41,7 @@ import '#/handlers/locs/index.js';
 import '#/handlers/items/index.js';
 
 // Quest handlers
-// import '#/handlers/quests/index.js';
+import '#/handlers/quests/index.js';
+
+// Skill handlers
+import '#/handlers/skills/index.js';

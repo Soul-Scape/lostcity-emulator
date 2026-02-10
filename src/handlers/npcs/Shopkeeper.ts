@@ -2,19 +2,22 @@
  * General Store Shopkeeper (NPC ID: 220) and Shop Assistant (NPC ID: 221).
  * Op1: Talk-to — opens general store.
  * Op2: Trade — opens general store directly.
+ *
+ * Uses the general store inventory (inv ID 4 in RS225 configs).
  */
 import Player from '#/engine/entity/Player.js';
 import ScriptProvider, { ScriptContext } from '#/engine/script/ScriptProvider.js';
 import ServerTriggerType from '#/engine/script/ServerTriggerType.js';
-import { messageGame } from '#/network/server/ServerMessages.js';
+import { openShop } from '#/engine/ShopSystem.js';
 
 const SHOPKEEPER_ID = 220;
 const SHOP_ASSISTANT_ID = 221;
 
-// Placeholder — full shop interface requires the shop system (Phase 3)
+// General store inventory type ID (varies by location — use Lumbridge default)
+const GENERAL_STORE_INV = 4;
+
 function openGeneralStore(player: Player): void {
-    messageGame(player, 'Welcome to the general store!');
-    messageGame(player, 'The shop system is not yet implemented.');
+    openShop(player, GENERAL_STORE_INV, 'Lumbridge General Store');
 }
 
 ScriptProvider.register(ServerTriggerType.OPNPC1, SHOPKEEPER_ID, (ctx: ScriptContext) => {

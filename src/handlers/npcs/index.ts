@@ -13,3 +13,5 @@ import '#/handlers/npcs/Cow.js';
 import '#/handlers/npcs/Chicken.js';
 import '#/handlers/npcs/Rat.js';
 import '#/handlers/npcs/Wizard.js';
+import '#/handlers/npcs/Monsters.js';
+import '#/handlers/npcs/ServiceNpcs.js';

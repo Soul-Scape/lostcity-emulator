@@ -16,6 +16,7 @@ import { PlayerStat } from '#/engine/entity/PlayerStat.js';
 import PlayerQueueRequest, { PlayerQueueType } from '#/engine/entity/PlayerQueueRequest.js';
 import { CollisionFlag } from '#/engine/GameMap.js';
 import { Inventory } from '#/engine/Inventory.js';
+import { InvStore } from '#/config/InvType.js';
 import ScriptProvider from '#/engine/script/ScriptProvider.js';
 import ServerTriggerType from '#/engine/script/ServerTriggerType.js';
 import World from '#/engine/World.js';
@@ -298,6 +299,14 @@ export default class Player extends PathingEntity {
     // ---- persistence ----
 
     save(): Uint8Array {
+        const invData: { type: number; items: ({ id: number; count: number } | null)[] }[] = [];
+        for (const [type, inv] of this.invs) {
+            invData.push({
+                type,
+                items: inv.items.map(item => item ? { id: item.id, count: item.count } : null),
+            });
+        }
+
         const data = {
             username: this.username,
             x: this.x,
@@ -313,6 +322,7 @@ export default class Player extends PathingEntity {
             runenergy: this.runenergy,
             friendList: this.friendList.map(h => h.toString()),
             ignoreList: this.ignoreList.map(h => h.toString()),
+            invs: invData,
         };
         return new TextEncoder().encode(JSON.stringify(data));
     }
@@ -334,6 +344,22 @@ export default class Player extends PathingEntity {
             this.runenergy = data.runenergy ?? 10000;
             this.friendList = (data.friendList ?? []).map((h: string) => BigInt(h));
             this.ignoreList = (data.ignoreList ?? []).map((h: string) => BigInt(h));
+
+            // restore inventories
+            if (data.invs && Array.isArray(data.invs)) {
+                for (const invData of data.invs) {
+                    const invType = InvStore.get(invData.type);
+                    const capacity = invType?.size ?? invData.items.length;
+                    const stackType = invType?.stackall ? Inventory.ALWAYS_STACK : Inventory.NORMAL_STACK;
+                    const inv = new Inventory(invData.type, capacity, stackType);
+                    for (let i = 0; i < invData.items.length && i < capacity; i++) {
+                        if (invData.items[i]) {
+                            inv.items[i] = { id: invData.items[i].id, count: invData.items[i].count };
+                        }
+                    }
+                    this.invs.set(invData.type, inv);
+                }
+            }
         } catch {
             console.error(`[Player] Failed to load save for ${this.username}`);
         }
